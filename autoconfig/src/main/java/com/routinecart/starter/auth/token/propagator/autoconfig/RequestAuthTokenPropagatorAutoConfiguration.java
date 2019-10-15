@@ -1,7 +1,7 @@
 package com.routinecart.starter.auth.token.propagator.autoconfig;
 
-import com.routinecart.starter.auth.token.propagator.RequestUIDPropagatorFilter;
-import com.routinecart.starter.auth.token.propagator.RequestUIDPropagatorInterceptor;
+import com.routinecart.starter.auth.token.propagator.RequestAuthTokenPropagatorFilter;
+import com.routinecart.starter.auth.token.propagator.RequestAuthTokenPropagatorInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -16,18 +16,18 @@ import static java.lang.Integer.MAX_VALUE;
         name = "enabled",
         havingValue = "true", matchIfMissing = true
 )
-public class RequestUIDPropagatorAutoConfiguration {
+public class RequestAuthTokenPropagatorAutoConfiguration {
     @Bean
     public FilterRegistrationBean requestUIDPropagatorFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        filterRegistrationBean.setFilter(new RequestUIDPropagatorFilter());
+        filterRegistrationBean.setFilter(new RequestAuthTokenPropagatorFilter());
         filterRegistrationBean.setOrder(MAX_VALUE);
         return filterRegistrationBean;
     }
 
     @Bean
     @ConditionalOnBean
-    public RequestUIDPropagatorInterceptor requestUIDPropagatorInterceptor() {
-        return new RequestUIDPropagatorInterceptor();
+    public RequestAuthTokenPropagatorInterceptor requestUIDPropagatorInterceptor() {
+        return new RequestAuthTokenPropagatorInterceptor();
     }
 }

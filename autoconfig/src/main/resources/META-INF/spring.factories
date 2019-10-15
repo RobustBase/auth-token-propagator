@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    com.routinecart.request.uid.propagator.autoconfig.RequestUIDPropagatorAutoConfiguration
+    com.routinecart.starter.auth.token.propagator.autoconfig.RequestAuthTokenPropagatorAutoConfiguration

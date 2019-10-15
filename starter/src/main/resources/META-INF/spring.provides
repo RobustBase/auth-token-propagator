@@ -1,1 +1,1 @@
-provides: request-uid-propagator-autoconfig
+provides: auth-token-propagator-autoconfig

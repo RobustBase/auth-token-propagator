@@ -6,21 +6,22 @@ import java.io.IOException;
 
 import static com.routinecart.starter.auth.token.propagator.RequestAuthTokenHeader.REQUEST_AUTH_TOKEN_HEADER;
 
-public class RequestUIDPropagatorFilter implements Filter {
+public class RequestAuthTokenPropagatorFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String requestUID = httpServletRequest.getHeader(REQUEST_AUTH_TOKEN_HEADER);
+        String requestAuthToken = httpServletRequest.getHeader(REQUEST_AUTH_TOKEN_HEADER);
         try {
-            RequestAuthTokenHeaderContextHolder.setRequestUIDHeader(requestUID);
+            RequestAuthTokenHeaderContextHolder.setRequestAuthTokenHeader(requestAuthToken);
             chain.doFilter(request, response);
         } finally {
-            RequestAuthTokenHeaderContextHolder.resetRequestUIDHeader();
+            RequestAuthTokenHeaderContextHolder.resetRequestAuthTokenHeader();
         }
     }
 
