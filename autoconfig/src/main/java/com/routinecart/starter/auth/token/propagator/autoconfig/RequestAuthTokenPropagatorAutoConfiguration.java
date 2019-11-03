@@ -12,7 +12,7 @@ import static java.lang.Integer.MAX_VALUE;
 
 @Configuration
 @ConditionalOnProperty(
-        prefix = "routinecart.request.uid.propagator",
+        prefix = "com.routinecart.starter.auth.token.propagator",
         name = "enabled",
         havingValue = "true", matchIfMissing = true
 )
